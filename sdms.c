@@ -306,6 +306,49 @@ void teachermenu(node* head)
 
 	}
 }
+void studentmenu(node *head, int regn_no, int passcode, int pvt_key)
+{
+	node *temp=head;
+	int flag=0;
+	while(temp!=NULL && pvt_key==1)
+	{
+		if(temp->registration_no == regn_no)
+		{
+			flag++;
+			break;
+		}
+		temp=temp->next;	
+	}
+	if(flag==1)
+	{
+		printf("\n%30cRegistration Number=>%d",' ',temp->registration_no);
+		//printf("\n%30cPassword=>%d",' ',temp->password);
+		//printf("\n%30cName=>%s",' ',temp->name[30]);
+		printf("\n%30cName=>",' ');puts(temp->name);
+		//write a fuction for returning attendance as two integers
+		int attend,total;
+		rtn_intgrs(temp->attend_1,&attend,&total);
+		printf("\n%30cAttendance in subject 1=%d/%d",' ',attend,total);
+		//rtn_intgrs(temp->attend_2,&attend,&total);
+		//printf("\n%30cAttendance in subject 2=%d/%d",' ',attend,total);
+		//rtn_intgrs(temp->attend_3,&attend,&total);	
+		//printf("\n%30cAttendance in subject 3=%d/%d",' ',attend,total);
+		//write a function to return marks as two integers
+		int got,full;
+		rtn_intgrs(temp->marks_1,&got,&full);
+		printf("\n%30cMarks in subject 1=%d/%d",' ',got,full);
+		//rtn_intgrs(temp->marks_2,&got,&full);
+		//printf("\n%30cMarks in subject 2=%d/%d",' ',got,full);
+		//rtn_intgrs(temp->marks_3,&got,&full);
+		//printf("\n%30cMarks in subject 3=%d/%d",' ',got,full);
+		printf("\n\n\n");
+			
+	}
+	else
+	{
+		printf("\n%30cWRONG CREDENTIALS ENTERED.................!!!!!!!!!!",' ');
+	}
+}
 
 void main()
 {
@@ -323,9 +366,14 @@ do
 	scanf("%d",&ch);
 	if(ch==1)
 	{
-		
+	int student_registn,pass;
 	printf("\n%30cNote:You can only read the data.\n",' ');
-	//studentmenu();
+	printf("\n%30cEnter your registration number=>",' ');
+	scanf("%d",&student_registn);
+	printf("\n%30cEnter you password=>",' ');
+	scanf("%d",&pass);
+	studentmenu(head,student_registn,pass,1);
+	
 		
 	}
 	else if(ch==2)
